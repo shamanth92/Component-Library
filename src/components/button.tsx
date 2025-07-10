@@ -77,6 +77,7 @@ export const Button = ({
       break;
     case BUTTONTYPES.Disabled:
       buttonTypeStyle = disabledButtonStyles;
+      break;
     default:
       break;
   }
