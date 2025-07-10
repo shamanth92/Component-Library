@@ -1,5 +1,14 @@
 "use client";
+import { CodeBlock } from "@/components/codeBlock";
+import { ComponentLayout } from "@/components/componentLayout";
 import { Dropdown } from "@/components/dropdown";
+import {
+  basicDropdownCode,
+  checkboxDropdownCode,
+  chipDropdownCode,
+  groupDropdownCode,
+  multiDropdownCode,
+} from "@/rawCode/dropdown";
 import { useState } from "react";
 
 export default function DropdownComponent() {
@@ -8,6 +17,11 @@ export default function DropdownComponent() {
   const [player, setPlayer] = useState<string | string[]>([]);
   const [food, setFood] = useState<string | string[]>("red");
   const [spot, setSpot] = useState<string | string[]>([]);
+  const [showBasicCode, setShowBasicCode] = useState(false);
+  const [showMultiCode, setShowMultiCode] = useState(false);
+  const [showCheckboxCode, setShowCheckboxCode] = useState(false);
+  const [showGroupCode, setShowGroupCode] = useState(false);
+  const [showChipCode, setShowChipCode] = useState(false);
 
   const colorOptions = [
     { value: "red", label: "Red" },
@@ -60,119 +74,135 @@ export default function DropdownComponent() {
   ];
 
   return (
-    <div className="p-6 flex flex-col gap-15 bg-orange-50 h-full">
-      <div className="flex flex-row justify-center">
-        <p className="font-mono font-bold text-xl">Dropdown Component</p>
-      </div>
-      <div className="border-1 rounded-md p-4 bg-white shadow-xl">
-        <div className="flex flex-col gap-4 w-full">
-          <p className="font-mono text-lg font-bold">Basic Dropdown</p>
-          <div className="flex flex-row justify-evenly">
-            <Dropdown
-              label="Pick a color"
-              value={color}
-              options={colorOptions}
-              onChange={setColor}
-            />
-          </div>
+    <ComponentLayout componentType="Dropdown">
+      <div>
+        <p className="font-mono text-lg font-bold">Basic Dropdown</p>
+        <div className="flex flex-row justify-evenly">
+          <Dropdown
+            label="Pick a color"
+            value={color}
+            options={colorOptions}
+            onChange={setColor}
+          />
         </div>
+        <div className="pt-8">
+          <button
+            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
+            onClick={() => setShowBasicCode(!showBasicCode)}
+          >
+            Show code
+          </button>
+        </div>
+        {showBasicCode && (
+          <div>
+            <CodeBlock code={basicDropdownCode} />
+          </div>
+        )}
       </div>
 
-      <div className="border-1 rounded-md p-4 bg-white shadow-xl">
-        <div className="flex flex-col gap-4 w-full">
-          <p className="font-mono text-lg font-bold">Multi Select Dropdown</p>
-          <div className="flex flex-row justify-evenly">
-            <Dropdown
-              label="Pick favorite cities"
-              value={city}
-              options={cityOptions}
-              multiple={true}
-              onChange={setCity}
-            />
-          </div>
+      <div>
+        <p className="font-mono text-lg font-bold">Multi Select Dropdown</p>
+        <div className="flex flex-row justify-evenly">
+          <Dropdown
+            label="Pick favorite cities"
+            value={city}
+            options={cityOptions}
+            multiple={true}
+            onChange={setCity}
+          />
         </div>
+        <div className="pt-8">
+          <button
+            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
+            onClick={() => setShowMultiCode(!showMultiCode)}
+          >
+            Show code
+          </button>
+        </div>
+        {showMultiCode && (
+          <div>
+            <CodeBlock code={multiDropdownCode} />
+          </div>
+        )}
       </div>
 
-      <div className="border-1 rounded-md p-4 bg-white shadow-xl">
-        <div className="flex flex-col gap-4 w-full">
-          <p className="font-mono text-lg font-bold">Dropdown with Checkbox</p>
-          <div className="flex flex-row justify-evenly">
-            <Dropdown
-              label="Pick favorite players"
-              value={player}
-              options={playerOptions}
-              onChange={setPlayer}
-              checkbox={true}
-            />
-          </div>
+      <div>
+        <p className="font-mono text-lg font-bold">Dropdown with Checkbox</p>
+        <div className="flex flex-row justify-evenly">
+          <Dropdown
+            label="Pick favorite players"
+            value={player}
+            options={playerOptions}
+            onChange={setPlayer}
+            checkbox={true}
+          />
         </div>
+        <div className="pt-8">
+          <button
+            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
+            onClick={() => setShowCheckboxCode(!showCheckboxCode)}
+          >
+            Show code
+          </button>
+        </div>
+        {showCheckboxCode && (
+          <div>
+            <CodeBlock code={checkboxDropdownCode} />
+          </div>
+        )}
       </div>
 
-      <div className="border-1 rounded-md p-4 bg-white shadow-xl">
-        <div className="flex flex-col gap-4 w-full">
-          <p className="font-mono text-lg font-bold">Group Dropdown</p>
-          <div className="flex flex-row justify-evenly">
-            <Dropdown
-              label="Pick favorite food"
-              value={food}
-              groupOptions={foodOptions}
-              onChange={setFood}
-              group={true}
-            />
-          </div>
+      <div>
+        <p className="font-mono text-lg font-bold">Group Dropdown</p>
+        <div className="flex flex-row justify-evenly">
+          <Dropdown
+            label="Pick favorite food"
+            value={food}
+            groupOptions={foodOptions}
+            onChange={setFood}
+            group={true}
+          />
         </div>
+        <div className="pt-8">
+          <button
+            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
+            onClick={() => setShowGroupCode(!showGroupCode)}
+          >
+            Show code
+          </button>
+        </div>
+        {showGroupCode && (
+          <div>
+            <CodeBlock code={groupDropdownCode} />
+          </div>
+        )}
       </div>
 
-      <div className="border-1 rounded-md p-4 bg-white shadow-xl">
-        <div className="flex flex-col gap-4 w-full">
-          <p className="font-mono text-lg font-bold">Chip Dropdown</p>
-          <div className="flex flex-row justify-evenly">
-            <Dropdown
-              label="Pick favorite tourist spot"
-              value={spot}
-              options={spotOptions}
-              chip={true}
-              onChange={setSpot}
-            />
-          </div>
+      <div>
+        <p className="font-mono text-lg font-bold">Chip Dropdown</p>
+        <div className="flex flex-row justify-evenly">
+          <Dropdown
+            label="Pick favorite tourist spot"
+            value={spot}
+            options={spotOptions}
+            chip={true}
+            onChange={setSpot}
+          />
         </div>
+        <div className="pt-8">
+          <button
+            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
+            onClick={() => setShowChipCode(!showChipCode)}
+          >
+            Show code
+          </button>
+        </div>
+        {showChipCode && (
+          <div>
+            <CodeBlock code={chipDropdownCode} />
+          </div>
+        )}
       </div>
-    </div>
-    // <div className="p-6">
-    //   <Dropdown
-    //     label="Pick a color"
-    //     value={color}
-    //     options={colorOptions}
-    //     onChange={setColor}
-    //   />
-    //   <Dropdown
-    //     label="Pick favorite cities"
-    //     value={city}
-    //     options={cityOptions}
-    //     multiple={true}
-    //     onChange={setCity}
-    //   />
-    //   <Dropdown
-    //     label="Pick favorite players"
-    //     value={player}
-    //     options={playerOptions}
-    //     onChange={setPlayer}
-    //     checkbox={true}
-    //   />
-    //   <Dropdown
-    //     label="Pick favorite food"
-    //     value={food}
-    //     groupOptions={foodOptions}
-    //     onChange={setFood}
-    //     group={true}
-    //   />
-    //   <Dropdown
-    //     label="Pick favorite tourist spot"
-    //     value={spot}
-    //     options={spotOptions}
-    //     chip={true}
-    //     onChange={setSpot}
-    //   />
-    // </div>
+    </ComponentLayout>
   );
 }

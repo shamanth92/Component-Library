@@ -1,23 +1,9 @@
-"use client";
+export const basicSnackbarCode = `
 import { Button, BUTTONTYPES } from "@/components/button";
-import { CodeBlock } from "@/components/codeBlock";
-import { ComponentLayout } from "@/components/componentLayout";
 import { POSITION, SnackBar } from "@/components/snackbar";
-import { basicSnackbarCode } from "@/rawCode/snackbar";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
 
-export default function SnackbarComponent() {
-  const [showBasic, setShowBasic] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
-  const [showError, setShowError] = useState(false);
-  const [showBasicCode, setShowBasicCode] = useState(false);
-
-  return (
-    <ComponentLayout componentType="Snackbar">
-      <div>
-        <p className="font-mono text-lg font-bold pb-8">Basic Card</p>
-        <div className="flex flex-row justify-evenly">
+ <div className="flex flex-row justify-evenly">
           <SnackBar
             content="This is content area"
             action="Dismiss"
@@ -116,20 +102,4 @@ export default function SnackbarComponent() {
             Open
           </Button>
         </div>
-        <div className="pt-8">
-          <button
-            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
-            onClick={() => setShowBasicCode(!showBasicCode)}
-          >
-            Show code
-          </button>
-        </div>
-        {showBasicCode && (
-          <div>
-            <CodeBlock code={basicSnackbarCode} />
-          </div>
-        )}
-      </div>
-    </ComponentLayout>
-  );
-}
+`;

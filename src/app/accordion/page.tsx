@@ -1,6 +1,18 @@
+"use client";
 import { Accordion } from "@/components/accordion";
+import { CodeBlock } from "@/components/codeBlock";
+import { ComponentLayout } from "@/components/componentLayout";
+import {
+  basicAccordionCode,
+  disabledAccordionCode,
+  expandedAccordionCode,
+} from "@/rawCode/accordion";
+import { useState } from "react";
 
 export default function AccordionComponent() {
+  const [showBasicCode, setShowBasicCode] = useState(false);
+  const [showDisabledCode, setShowDisabledCode] = useState(false);
+  const [showExpandedCode, setShowExpandedCode] = useState(false);
   const content = [
     {
       title: "Title One",
@@ -20,37 +32,66 @@ export default function AccordionComponent() {
   ];
 
   return (
-    <div className="p-6 flex flex-col gap-18 bg-orange-50 min-h-screen">
-      <div className="flex flex-row justify-center">
-        <p className="font-mono font-bold text-xl">Accordion Component</p>
+    <ComponentLayout componentType="Accordion">
+      <div>
+        <p className="font-mono text-lg font-bold">Basic Accordion</p>
+        <div className="flex flex-row justify-evenly">
+          <Accordion content={content} />
+        </div>
+        <div className="pt-8">
+          <button
+            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
+            onClick={() => setShowBasicCode(!showBasicCode)}
+          >
+            Show code
+          </button>
+        </div>
+        {showBasicCode && (
+          <div>
+            <CodeBlock code={basicAccordionCode} />
+          </div>
+        )}
       </div>
 
-      <div className="border-1 rounded-md p-4 bg-white shadow-xl">
-        <div className="flex flex-col gap-8 w-full">
-          <p className="font-mono text-lg font-bold">Basic Accordion</p>
-          <div className="flex flex-row justify-evenly">
-            <Accordion content={content} />
-          </div>
+      <div>
+        <p className="font-mono text-lg font-bold">Disabled Accordion</p>
+        <div className="flex flex-row justify-evenly">
+          <Accordion content={content} disabled={[0, 2]} />
         </div>
+        <div className="pt-8">
+          <button
+            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
+            onClick={() => setShowDisabledCode(!showDisabledCode)}
+          >
+            Show code
+          </button>
+        </div>
+        {showDisabledCode && (
+          <div>
+            <CodeBlock code={disabledAccordionCode} />
+          </div>
+        )}
       </div>
 
-      <div className="border-1 rounded-md p-4 bg-white shadow-xl">
-        <div className="flex flex-col gap-8 w-full">
-          <p className="font-mono text-lg font-bold">Disabled Buttons</p>
-          <div className="flex flex-row justify-evenly">
-            <Accordion content={content} disabled={[0, 2]} />
-          </div>
+      <div>
+        <p className="font-mono text-lg font-bold">Expanded Accordion</p>
+        <div className="flex flex-row justify-evenly">
+          <Accordion content={content} expanded={[0, 2]} />
         </div>
-      </div>
-
-      <div className="border-1 rounded-md p-4 bg-white shadow-xl">
-        <div className="flex flex-col gap-8 w-full">
-          <p className="font-mono text-lg font-bold">Expanded Buttons</p>
-          <div className="flex flex-row justify-evenly">
-            <Accordion content={content} expanded={[0, 2]} />
-          </div>
+        <div className="pt-8">
+          <button
+            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
+            onClick={() => setShowExpandedCode(!showExpandedCode)}
+          >
+            Show code
+          </button>
         </div>
+        {showExpandedCode && (
+          <div>
+            <CodeBlock code={expandedAccordionCode} />
+          </div>
+        )}
       </div>
-    </div>
+    </ComponentLayout>
   );
 }

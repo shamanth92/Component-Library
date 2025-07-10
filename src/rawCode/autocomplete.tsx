@@ -1,12 +1,4 @@
-"use client";
-import { Autocomplete } from "@/components/autocomplete";
-import { CodeBlock } from "@/components/codeBlock";
-import { ComponentLayout } from "@/components/componentLayout";
-import { basicAutocompleteCode } from "@/rawCode/autocomplete";
-import { useState } from "react";
-
-export default function AutocompleteComponent() {
-  const [showBasicCode, setShowBasicCode] = useState(false);
+export const basicAutocompleteCode = `
   const states = [
     { label: "Alabama", value: "AL" },
     { label: "Alaska", value: "AK" },
@@ -60,11 +52,9 @@ export default function AutocompleteComponent() {
     { label: "Wyoming", value: "WY" },
   ];
 
-  const [state, setState] = useState<string>("");
+import { Autocomplete } from "@/components/autocomplete";
 
-  return (
-    <ComponentLayout componentType="AutoComplete">
-      <div>
+    <div>
         <p className="font-mono text-lg font-bold">Basic Accordion</p>
         <div className="flex flex-row justify-evenly">
           <Autocomplete
@@ -74,20 +64,5 @@ export default function AutocompleteComponent() {
             onChange={setState}
           />
         </div>
-        <div className="pt-8">
-          <button
-            className="font-mono border-1 h-8 px-6 cursor-pointer rounded-md text-sky-500"
-            onClick={() => setShowBasicCode(!showBasicCode)}
-          >
-            Show code
-          </button>
-        </div>
-        {showBasicCode && (
-          <div>
-            <CodeBlock code={basicAutocompleteCode} />
-          </div>
-        )}
-      </div>
-    </ComponentLayout>
-  );
-}
+    </div>
+`;
