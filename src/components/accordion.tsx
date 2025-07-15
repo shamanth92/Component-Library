@@ -30,8 +30,6 @@ export const Accordion = ({
     setOpenStates(newStates);
   };
 
-  const a = 0;
-
   const isDisabled = (i: number) => {
     return disabled?.includes(i);
   };
