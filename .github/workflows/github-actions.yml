@@ -7,6 +7,25 @@ on:
     branches: [main]
 
 jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.17.0"
+
+      - name: Install dependencies
+        run: npm install
+
+      - uses: reviewdog/action-eslint@2fee6dd72a5419ff4113f694e2068d2a03bb35dd # v1.33.2
+        with:
+          reporter: github-checkout
+          eslint_flags: "src/"
+
   test:
     runs-on: ubuntu-latest
 
