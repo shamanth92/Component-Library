@@ -22,10 +22,7 @@ jobs:
         run: npm install
 
       - name: Run Linting
-        uses: reviewdog/action-eslint@2fee6dd72a5419ff4113f694e2068d2a03bb35dd # v1.33.2
-        with:
-          reporter: github-check
-          eslint_flags: "src/"
+        run: npm run lint
 
   test:
     needs: eslint
