@@ -16,7 +16,7 @@ export default function SnackbarComponent() {
   return (
     <ComponentLayout componentType="Snackbar">
       <div>
-        <p className="font-mono text-lg font-bold pb-8">Basic Card</p>
+        <p className="font-mono text-lg font-bold pb-8">Basic Snackbar</p>
         <div className="flex flex-row justify-evenly">
           <SnackBar
             content="This is content area"
