@@ -2,6 +2,9 @@
 import { ComponentType, useState } from "react";
 import { Autocomplete } from "./autocomplete";
 import { Avatar } from "./avatar";
+import { Bars3Icon } from "@heroicons/react/24/solid";
+import { Drawer, SectionList, SideBarOptions, SideBarTitle } from "./drawer";
+import Link from "next/link";
 
 type Option = { value: string; label: string };
 
@@ -13,6 +16,7 @@ type HeaderProps = {
   search?: boolean;
   searchList?: Option[];
   headerLinks?: string[];
+  sectionList?: SectionList[];
 };
 
 export const Header = ({
@@ -23,15 +27,31 @@ export const Header = ({
   headerLinks,
   menu,
   menuItems,
+  sectionList,
 }: HeaderProps) => {
   const [searchField, setSearchField] = useState<string>("");
   const [openMenu, setOpenMenu] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
     <div className="h-20 w-full bg-sky-500 flex flex-row">
-      <div className="flex flex-row  gap-4 items-center w-1/6 h-full p-4">
-        {LogoIcon && <LogoIcon className="size-8 text-white cursor-pointer" />}
-        <p className="font-mono font-bold text-2xl text-white">{logoTitle}</p>
+      <div className="flex flex-row  gap-4 items-center w-1/3 h-full p-4 cursor-pointer">
+        <Bars3Icon
+          className="size-8 text-white"
+          onClick={() => setOpenDrawer(!openDrawer)}
+        />
+        {LogoIcon && (
+          <Link href="/">
+            <LogoIcon className="size-8 text-white" />
+          </Link>
+        )}
+        <Link href="/">
+          <p className="font-mono font-bold text-2xl text-white">{logoTitle}</p>
+        </Link>
+        <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
+          <SideBarTitle title={logoTitle} Icon={LogoIcon} />
+          <SideBarOptions sections={true} sectionList={sectionList} />
+        </Drawer>
       </div>
       {headerLinks && (
         <div className="flex flex-row justify-evenly w-1/2">

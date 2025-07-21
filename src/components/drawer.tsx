@@ -1,5 +1,6 @@
 "use client";
 import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/solid";
+import Link from "next/link";
 import { ComponentType, ReactNode, useEffect, useState } from "react";
 
 type DrawerProps = {
@@ -15,7 +16,7 @@ type DrawerTitleProps = {
   Icon?: ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
-type SectionList = {
+export type SectionList = {
   options: string[];
   name: string;
   OptionIconList?: ComponentType<React.SVGProps<SVGSVGElement>>[];
@@ -72,7 +73,9 @@ export const Drawer = ({
           }`}
         >
           <div className="flex flex-col justify-between h-full">
-            <div>{children}</div>
+            <div className="flex-1 overflow-y-auto thin-scrollbar">
+              {children}
+            </div>
             {logout && (
               <div className="flex justify-center gap-2 w-full items-center px-4 pb-6 cursor-pointer">
                 <p className="font-mono text-xl text-white">Logout</p>
@@ -116,7 +119,7 @@ export const SideBarOptions = ({
               >
                 <div className="flex gap-2 items-center w-full">
                   {Icon && <Icon className="size-4" />}
-                  {option}
+                  <Link href={`/${option?.toLowerCase()}`}>{option}</Link>
                 </div>
               </li>
             );
