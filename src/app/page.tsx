@@ -79,7 +79,12 @@ export default function Home() {
               <Button variant={BUTTONTYPES.Contained}>Docs</Button>
               <Button
                 variant={BUTTONTYPES.Contained}
-                onClick={() => window.open("http://localhost:6006", "_blank")}
+                onClick={() =>
+                  window.open(
+                    "https://shamanth92.github.io/Component-Library/",
+                    "_blank"
+                  )
+                }
               >
                 Storybook
               </Button>
