@@ -80,10 +80,7 @@ export default function Home() {
               <Button
                 variant={BUTTONTYPES.Contained}
                 onClick={() =>
-                  window.open(
-                    "https://shamanth92.github.io/Component-Library/",
-                    "_blank"
-                  )
+                  window.open(process.env.NEXT_PUBLIC_STORYBOOK_URL, "_blank")
                 }
               >
                 Storybook
