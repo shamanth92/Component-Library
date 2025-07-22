@@ -43,24 +43,30 @@ jobs:
       - name: Run Jest tests
         run: npm test
 
-  deploy-storybook:
+  build:
     needs: test
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Install and build Storybook
-        run: |
-          npm ci
-          npm run build-storybook
+      - name: Install dependencies
+        run: npm ci
 
-      - name: List build output
-        run: ls -la storybook-static
+      - name: Build Storybook
+        run: npm run build-storybook
 
-      - name: Deploy to Github Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./storybook-static
+          path: storybook-static
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
