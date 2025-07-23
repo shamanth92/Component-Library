@@ -16,6 +16,17 @@ export default function ButtonComponent() {
 
   return (
     <ComponentLayout componentType="Button">
+      <div className="font-mono">
+        A versatile and accessible button component that supports multiple
+        variants, sizes, and interaction states. Built for reusability, it can
+        be used across forms, modals, toolbars, and interactive UI elements.
+        <p className="font-bold pt-4">Key features: </p>
+        <ul>
+          <li>Supports variant prop</li>
+          <li>Optional size prop</li>
+          <li>Supports loading/disabled states</li>
+        </ul>
+      </div>
       <div>
         <p className="font-mono text-lg font-bold">Basic Buttons</p>
         <div className="flex flex-row justify-evenly">
