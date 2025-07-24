@@ -1,7 +1,6 @@
 {
   "name": "@fullstackdev92/my-component-library",
   "version": "1.0.0",
-  "private": true,
   "publishConfig": {
     "access": "public"
   },
