@@ -1,7 +1,10 @@
 {
-  "name": "my-component-library",
-  "version": "0.1.0",
+  "name": "@fullstackdev92/my-component-library",
+  "version": "1.0.0",
   "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
