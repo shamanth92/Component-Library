@@ -1,5 +1,5 @@
 {
-  "name": "@fullstackdev92/my-component-library",
+  "name": "@fullstackdev92/my-next-tailwind-component-library",
   "version": "1.0.0",
   "publishConfig": {
     "access": "public"
